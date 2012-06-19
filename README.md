@@ -12,13 +12,13 @@ I have had trouble getting PDL::Drawing::Prima to index properly. So I
 recommend that you install the following modules using CPAN (or a similar
 client):
 
-  cpan Prima PDL App::cpanminus
+    cpan Prima PDL App::cpanminus
 
 Then use cpanm to install the following directly from github:
 
-  cpanm http://github.com/run4flat/PDL-Drawing-Prima/tarball/master
-  cpanm http://github.com/run4flat/PDL-Graphics-Prima/tarball/master
-  cpanm http://github.com/run4flat/App-Prima-REPL/tarball/master
+    cpanm http://github.com/run4flat/PDL-Drawing-Prima/tarball/master
+    cpanm http://github.com/run4flat/PDL-Graphics-Prima/tarball/master
+    cpanm http://github.com/run4flat/App-Prima-REPL/tarball/master
 
 If you run into trouble installing these, feel free to file an Issue on
 this github repo: https://github.com/run4flat/yapc2012
