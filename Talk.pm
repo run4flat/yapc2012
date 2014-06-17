@@ -166,7 +166,7 @@ sub clear_talk {
 $::text_font_size = 10;
 
 # Main tab container:
-my ($main_container, $tab_number) = REPL::create_new_tab('Talk', Widget =>
+my ($main_container, $tab_number) = main::REPL()->create_new_tab('Talk', Widget =>
 	pack => { fill => 'both', expand => 1},
 	backColor => cl::White,
 );
@@ -258,7 +258,7 @@ $::title_font_size = $::text_font_size * 3.6;
 sub scale_fonts {
 	my $factor = shift;
 	$factor =~ /^[\d.]+$/
-		or return REPL::warn("scale_fonts wants a real number");
+		or return main::REPL()->warn("scale_fonts wants a real number");
 	
 	# Update all the font sizes
 	$::text_font_size *= $factor;
@@ -332,8 +332,8 @@ sub make_and_place {
 sub make_and_place_editor {
 	my %place_args = @_;
 	my $editor = make_and_place(Edit => %place_args);
-	REPL::endow_editor_widget($editor);
-	REPL::change_default_widget($tab_number, $editor);
+	main::REPL()->endow_editor_widget($editor);
+	main::REPL()->change_default_widget($tab_number, $editor);
 	$editor->font->size($::editor_font_size);
 	return $editor;
 }
@@ -470,7 +470,7 @@ sub render_code_and_plot {
 
 sub clean_slide {
 	# Remove all current widgets
-	REPL::change_default_widget($tab_number, $REPL::inline);
+	main::REPL()->change_default_widget($tab_number, main::REPL()->inline);
 	eval {$plot_widget->destroy};
 	while (@to_remove) {
 		my $widget = pop @to_remove;
@@ -520,7 +520,7 @@ sub render_slide {
 			my $code_text = shift @args;
 			my $editor = make_and_place_editor(build_place_args(@place_list));
 			$editor->text(remove_text_indent($code_text));
-			REPL::change_default_widget($tab_number, $editor);
+			main::REPL()->change_default_widget($tab_number, $editor);
 		}
 		elsif ($arg eq 'image') {
 			my $image_filename = shift @args;
@@ -529,7 +529,7 @@ sub render_slide {
 			# Ensure the image is already in the cache
 			$image_cache{$image_filename}
 				||= Prima::Image->load($image_filename) or do {
-					REPL::warn("Unable to open image file $image_filename");
+					main::REPL()->warn("Unable to open image file $image_filename");
 					next;
 				};
 			my $image = $image_cache{$image_filename};
@@ -559,7 +559,7 @@ sub render_slide {
 			$image_widget->backColor(cl::White);
 		}
 		else {
-			REPL::warn("Unknown slide construction option $arg");
+			main::REPL()->warn("Unknown slide construction option $arg");
 		}
 	}
 }

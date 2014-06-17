@@ -11,7 +11,7 @@ use Prima::Buttons;
 #############################
 
 # Main tab container:
-my ($action_container, $tab_number) = REPL::create_new_tab('Choose Talk', Widget =>
+my ($action_container, $tab_number) = REPL->create_new_tab('Choose Talk', Widget =>
 	pack => { fill => 'both', expand => 1},
 );
 
@@ -35,7 +35,7 @@ $action_container->insert(Button =>
 		Talk::clear_talk();
 		tutorial;
 		t::g(0);
-		REPL::goto_page(1);
+		REPL->goto_page(1);
 	},
 	place => {
 		x => 0, relwidth => 0.333,
@@ -51,7 +51,7 @@ $action_container->insert(Button =>
 		Talk::clear_talk();
 		intro_to_pdl;
 		t::g(0);
-		REPL::goto_page(1);
+		REPL->goto_page(1);
 	},
 	place => {
 		relx => 0.333, relwidth => 0.333,
@@ -67,7 +67,7 @@ $action_container->insert(Button =>
 		Talk::clear_talk();
 		pdl_graphics_prima;
 		t::g(0);
-		REPL::goto_page(1);
+		REPL->goto_page(1);
 	},
 	place => {
 		relx => 0.666, relwidth => 0.333,
@@ -80,4 +80,4 @@ $action_container->insert(Button =>
 # Select this tab #
 ###################
 scale_fonts(1.4);
-REPL::goto_page($tab_number);
+REPL->goto_page($tab_number);
